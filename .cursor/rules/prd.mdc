@@ -1,0 +1,110 @@
+---
+description: Project Requirement Document 
+globs: 
+alwaysApply: false
+---
+# **Project Requirement Document (PRD) for Cursor: Automated Personal Activity Tracker & Content Generator**
+
+## **1. Project Overview**
+Cursor is an automated system that tracks user activities on a personal computer (Windows/macOS) and generates meaningful content based on these activities using AI. The project consists of three main stages:
+
+- **Data Collection:** A system daemon/service runs in the background, collecting user interactions from various sources.
+- **Data Processing (AI-Powered Analysis):** AI models analyze collected data to generate meaningful summaries and insights.
+- **Content Publishing:** The processed data is formatted and automatically published to a personal website or blog.
+
+## **2. System Architecture & Technology Stack**
+### **2.1. Data Collection (Daemon/Service Layer)**
+**Purpose:** Capture system activities such as code edits, played games, visited websites, watched videos, and general PC interactions.
+
+**Technology Choices:**
+- **Programming Language:** Python (cross-platform, rich libraries) or Go (efficient, system-friendly)
+- **Daemon/Service Implementation:**
+  - Windows: `Windows Service (pywin32)` or `Go Service`
+  - macOS: `Launchd Daemon`
+- **Event Tracking Methods:**
+  - **File System Changes:** `fswatch` (Mac/Linux), `watchdog` (Python) for Windows
+  - **Active Window Tracking:** `GetForegroundWindow()` (Windows), `CGWindowListCopyWindowInfo` (macOS)
+  - **Web Browsing Data:** `DNS Query Monitoring` (system-wide tracking)
+  - **Application Monitoring:** `psutil` (Python), `tasklist` (Windows), `NSWorkspace` (macOS)
+  - **Keyboard/Mouse Activity:** `pynput` (Python), `evdev` (Linux), `Quartz` (macOS)
+  - **Game Tracking:** `Steam API` or `Game Overlay Hooking`
+
+**Output Format:** JSON logs stored locally in SQLite or MongoDB.
+
+---
+### **2.2. Data Processing (AI-Powered Analysis Layer)**
+**Purpose:** Convert raw collected data into structured insights and generate meaningful summaries.
+
+**Technology Choices:**
+- **Natural Language Processing (NLP) Engine:**
+  - OpenAI GPT-4 or Claude API (cloud-based)
+  - Llama 3 (for local processing)
+- **Data Structuring & Aggregation:**
+  - Pandas (Python) for log data processing
+  - LangChain (for AI-generated summaries)
+- **Sentiment Analysis & Content Categorization:**
+  - spaCy / NLTK for keyword extraction
+  - Sentence Transformers for topic modeling
+- **Data Storage & Management:**
+  - SQLite (local processing)
+  - Supabase PostgreSQL (cloud storage for historical logs)
+
+**Example Processed Output:**
+```json
+{
+  "date": "2025-03-09",
+  "summary": "Today, I worked on a Python API project in VS Code, played Cyberpunk 2077 for 2 hours, and read about Blockchain scalability solutions.",
+  "categories": ["Coding", "Gaming", "Technology"]
+}
+```
+
+---
+### **2.3. Content Publishing (Web Integration Layer)**
+**Purpose:** Send processed data to a web platform for automated content generation.
+
+**Technology Choices:**
+- **Website Framework:**
+  - Next.js (React-based frontend for displaying insights)
+  - Hugo (Static site generation via Markdown)
+  - WordPress REST API (for CMS-based blogging)
+- **Automated Publishing Methods:**
+  - `GitHub Actions` (push Markdown logs to Hugo/Vercel)
+  - Direct API integration with WordPress
+  - Custom backend with FastAPI or Express.js
+- **Data Visualization (Optional):**
+  - D3.js / Chart.js for activity graphs
+
+---
+## **3. Development Plan**
+### **Phase 1: Data Collection Module (Daemon/Service)**
+- Develop background process for Windows/macOS
+- Implement active window & file system monitoring
+- Track browser activity and gaming sessions
+- Store logs in JSON/SQLite
+
+### **Phase 2: AI-Based Processing Module**
+- Extract insights from logs (summaries, keyword tagging)
+- Train/tune AI models for better personalization
+- Develop a pipeline for structured output
+
+### **Phase 3: Web Integration & Publishing**
+- Build web API to receive and display content
+- Automate content generation & scheduling
+- Implement basic analytics for user engagement
+
+---
+## **4. Security & Privacy Considerations**
+- **User Data Control:** Provide a UI for manual review before publishing
+- **Privacy Filters:** Exclude sensitive data (passwords, private documents)
+- **Opt-in System:** Allow users to enable/disable tracking for specific apps
+
+---
+## **5. Expected Deliverables**
+✅ Windows/macOS background service for activity tracking
+✅ AI-powered summarization and categorization system
+✅ Automated website/blog integration for content publishing
+✅ Privacy-focused data handling & user control panel
+
+---
+**Next Steps:** Start development with **Phase 1: Data Collection Module.** 🚀
+

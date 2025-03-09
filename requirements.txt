@@ -1,0 +1,22 @@
+# Veri Toplama Modülü Gereksinimleri
+pywin32==306        # Windows servis oluşturma ve sistem API'lerine erişim
+psutil==5.9.5       # İşlem ve sistem izleme
+pynput==1.7.6       # Klavye ve fare aktivitelerini izleme
+watchdog==3.0.0     # Dosya sistemi değişikliklerini izleme
+requests==2.31.0    # HTTP istekleri için
+python-dotenv==1.0.0 # Ortam değişkenleri için
+SQLAlchemy==2.0.23  # Veritabanı ORM
+sqlite3-api==0.1.0  # SQLite veritabanı için
+
+# Veri İşleme Modülü Gereksinimleri
+pandas==2.1.1       # Veri işleme ve analiz
+langchain==0.0.335  # AI entegrasyonu için
+openai==1.3.5       # OpenAI API entegrasyonu
+nltk==3.8.1         # Doğal dil işleme
+spacy==3.7.2        # Gelişmiş NLP işlemleri
+
+# İçerik Yayınlama Modülü Gereksinimleri
+fastapi==0.104.1    # Web API oluşturma
+uvicorn==0.24.0     # ASGI sunucusu
+jinja2==3.1.2       # Şablon motoru
+markdown==3.5       # Markdown işleme 
