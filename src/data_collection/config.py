@@ -37,6 +37,22 @@ def parse_json_env(env_var, default=None):
 EXCLUDED_APPS = parse_json_env("EXCLUDED_APPS", [])
 EXCLUDED_WEBSITES = parse_json_env("EXCLUDED_WEBSITES", [])
 EXCLUDED_DIRECTORIES = parse_json_env("EXCLUDED_DIRECTORIES", [])
+EXCLUDED_FILE_TYPES = parse_json_env("EXCLUDED_FILE_TYPES", [".tmp", ".temp", ".log", ".cache", ".DS_Store"])
+
+# İzlenecek dizinler
+TRACKED_DIRECTORIES = parse_json_env("TRACKED_DIRECTORIES", [
+    os.path.expanduser("~/Documents"),
+    os.path.expanduser("~/Desktop"),
+    os.path.expanduser("~/Downloads")
+])
+
+# Oyun işlemleri
+GAME_PROCESSES = parse_json_env("GAME_PROCESSES", [
+    "steam", "epicgameslauncher", "battle.net", "origin", "gog", "minecraft", 
+    "league of legends", "dota2", "csgo", "fortnite", "overwatch", "wow", 
+    "hearthstone", "starcraft", "diablo", "civilization", "sims", "gta", 
+    "valorant", "apex", "rocketleague", "amongus", "fallguys", "roblox"
+])
 
 # Servis ayarları
 SERVICE_NAME = "CursorActivityTracker"

@@ -16,6 +16,8 @@ Proje üç ana bileşenden oluşmaktadır:
 
 - Python 3.9+
 - Windows veya macOS işletim sistemi
+- Windows için: pywin32
+- macOS için: pyobjc (Cocoa ve Quartz framework'leri)
 
 ### Kurulum Adımları
 
@@ -40,33 +42,67 @@ Proje üç ana bileşenden oluşmaktadır:
 
 ### Veri Toplama Servisini Başlatma
 
-Windows için:
+Ana komut arayüzü üzerinden:
 ```
-python src/data_collection/windows_service.py install
+python src/main.py service start
 ```
 
-macOS için:
+Bu komut, işletim sisteminize göre uygun servisi/daemon'u otomatik olarak başlatacaktır.
+
+Alternatif olarak, doğrudan servis/daemon modüllerini kullanabilirsiniz:
+
+**Windows için:**
 ```
-python src/data_collection/macos_daemon.py start
+python src/main.py service install  # Servisi yükle
+python src/main.py service start    # Servisi başlat
+python src/main.py service stop     # Servisi durdur
+python src/main.py service remove   # Servisi kaldır
+```
+
+**macOS için:**
+```
+python src/main.py service start    # Daemon'u başlat
+python src/main.py service stop     # Daemon'u durdur
+python src/main.py service restart  # Daemon'u yeniden başlat
 ```
 
 ### Veri İşleme ve İçerik Oluşturma
 
 ```
-python src/data_processing/process_data.py
+python src/main.py process --date YYYY-MM-DD
 ```
 
 ### İçerik Yayınlama
 
 ```
-python src/content_publishing/publish_content.py
+python src/main.py publish --date YYYY-MM-DD
 ```
+
+## İzlenen Aktiviteler
+
+Cursor aşağıdaki aktiviteleri izler:
+
+- **Pencere Aktiviteleri**: Hangi uygulamaların ne kadar süre aktif olduğu
+- **Klavye ve Fare Aktiviteleri**: Tuş basımları ve fare tıklamaları (içerik değil, sadece sayılar)
+- **Dosya Sistemi Değişiklikleri**: Oluşturulan, değiştirilen ve silinen dosyalar
+- **Tarayıcı Aktiviteleri**: Ziyaret edilen web siteleri (URL'ler)
+- **Oyun Aktiviteleri**: Oynanan oyunlar ve süreleri
+
+## MacOS Özellikleri
+
+MacOS'ta Cursor aşağıdaki özellikleri kullanır:
+
+- **AppKit ve Quartz**: Aktif pencere ve uygulama bilgilerini almak için
+- **Watchdog**: Dosya sistemi değişikliklerini izlemek için
+- **pynput**: Klavye ve fare aktivitelerini izlemek için
+- **SQLite**: Tarayıcı geçmişi ve diğer verileri depolamak için
 
 ## Güvenlik ve Gizlilik
 
 - Tüm veriler yerel olarak saklanır
 - Hassas veriler filtrelenir ve kaydedilmez
 - Kullanıcılar belirli uygulamalar için izlemeyi etkinleştirebilir veya devre dışı bırakabilir
+- Klavye içeriği (basılan tuşlar) kaydedilmez, sadece tuş basım sayıları kaydedilir
 
 ## Lisans
 

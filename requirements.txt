@@ -1,12 +1,15 @@
 # Veri Toplama Modülü Gereksinimleri
-pywin32==306        # Windows servis oluşturma ve sistem API'lerine erişim
+pywin32==306; sys_platform == 'win32'  # Windows servis oluşturma ve sistem API'lerine erişim (sadece Windows için)
 psutil==5.9.5       # İşlem ve sistem izleme
 pynput==1.7.6       # Klavye ve fare aktivitelerini izleme
 watchdog==3.0.0     # Dosya sistemi değişikliklerini izleme
 requests==2.31.0    # HTTP istekleri için
 python-dotenv==1.0.0 # Ortam değişkenleri için
 SQLAlchemy==2.0.23  # Veritabanı ORM
-sqlite3-api==0.1.0  # SQLite veritabanı için
+sqlite3-api>=2.0.4  # SQLite veritabanı için
+pyobjc-core==9.2; sys_platform == 'darwin'  # MacOS için Objective-C köprüsü
+pyobjc-framework-Cocoa==9.2; sys_platform == 'darwin'  # MacOS için Cocoa framework'ü
+pyobjc-framework-Quartz==9.2; sys_platform == 'darwin'  # MacOS için Quartz framework'ü
 
 # Veri İşleme Modülü Gereksinimleri
 pandas==2.1.1       # Veri işleme ve analiz
