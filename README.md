@@ -1,6 +1,6 @@
-# Cursor: Otomatik Kişisel Aktivite Takipçisi ve İçerik Oluşturucu
+# Otomatik Kişisel Aktivite Takipçisi ve İçerik Oluşturucu
 
-Cursor, kişisel bilgisayarınızdaki (Windows/macOS) aktiviteleri otomatik olarak takip eden ve bu aktivitelere dayalı olarak yapay zeka ile anlamlı içerikler oluşturan bir sistemdir.
+Kişisel bilgisayarınızdaki (Windows/macOS) aktiviteleri otomatik olarak takip eden ve bu aktivitelere dayalı olarak yapay zeka ile anlamlı içerikler oluşturan bir sistemdir.
 
 ## Proje Bileşenleri
 
